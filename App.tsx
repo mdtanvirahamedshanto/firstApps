@@ -1,35 +1,38 @@
-import { ScrollView, StyleSheet, View} from 'react-native';
-import TextInputComponent from './src/components/TextInput';
-import Basic from './src/components/Basic';
-import ScrollViewComponent from './src/components/ScrollView';
-import Styling from './src/components/Styling';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import TodoInput from './src/TodoComponents/TodoInput';
+import {useState} from 'react';
+
+interface Todo {
+  id: string;
+  text: string;
+  completed: boolean;
+}
 
 function App(): React.JSX.Element {
+  const [todoList, setTodoList] = useState<Todo[]>([]);
+  const addTodo = (text: string) => {
+    setTodoList([
+      ...todoList,
+      {id: Math.random().toString(), text: text, completed: false},
+    ]);
+  };
 
   return (
-   <View style={styles.container}>
-    <ScrollView nestedScrollEnabled={true} contentContainerStyle={styles.scroll}>
-
-    <Basic />
-    <TextInputComponent />
-    <ScrollViewComponent />
-    <Styling />
-    </ScrollView>
-   </View>
+    <View style={styles.container}>
+      <ScrollView>
+        <Text style={{fontSize: 24, fontWeight: 'bold', textAlign: 'center'}}>
+          Todo App
+        </Text>
+        <TodoInput onAddTodo={addTodo} />
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container:{
-    height:'auto',
+  container: {
+    flex: 1,
+    padding: 20,
   },
-  image:{
-    width:150,
-    height:150,
-    margin:10,
-  },
-  scroll:{
-    padding:20,
-  }
 });
 export default App;
