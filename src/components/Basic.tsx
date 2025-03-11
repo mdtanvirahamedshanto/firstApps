@@ -10,6 +10,9 @@ function Basic() {
           <Image style={styles.image} source={require('../../assets/image.jpg')} />
           <Text>Count is {count}</Text>
           <Button color={'green'} onPress={()=>setCount(count + 1)} title="Click me" />
+          <Image style={styles.image} source={require('../../assets/image.jpg')} />
+          <Text>Count is {count}</Text>
+          <Button color={'green'} onPress={()=>setCount(count + 1)} title="Click me" />
         </View>
       );
     }
@@ -18,7 +21,6 @@ function Basic() {
     const styles = StyleSheet.create({
       container:{
         backgroundColor:'gray',
-        height:'100%',
       },
       image:{
         width:150,
